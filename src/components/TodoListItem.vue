@@ -1,7 +1,9 @@
 <template>
     <li>
-        <p>{{ receivedTodo }}</p>
-        <span @click="removeTodo(receivedTodo)">&times;</span>
+        <p :class="{ completed: receivedTodo.isCompleted }">
+            {{ receivedTodo.text }}
+        </p>
+        <span @click="removeTodo(receivedTodo.id)">&times;</span>
     </li>
 </template>
 
@@ -10,7 +12,7 @@ export default {
     inject: ["removeTodo"],
     props: {
         receivedTodo: {
-            type: String,
+            type: Object,
             required: true,
         },
     },
@@ -34,6 +36,10 @@ li {
 li p {
     display: inline-block;
     width: 90%;
+}
+
+li p.completed {
+    text-decoration: line-through;
 }
 li span {
     display: inline-block;

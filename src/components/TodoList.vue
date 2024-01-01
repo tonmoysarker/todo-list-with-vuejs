@@ -3,7 +3,7 @@
         <ul v-auto-animate>
             <todo-list-item
                 v-for="todo in todos"
-                :key="todo"
+                :key="todo.id"
                 :received-todo="todo"
             ></todo-list-item>
         </ul>
@@ -30,7 +30,7 @@ export default {
 
 <style scoped>
 section ul {
-    height: 17rem;
+    max-height: 17rem;
     list-style-type: none;
     padding: 0.5rem;
     display: flex;
@@ -38,7 +38,6 @@ section ul {
     gap: 0.7rem;
     align-items: center;
     justify-content: center;
-    overflow: hidden;
     overflow-y: auto;
 }
 </style>

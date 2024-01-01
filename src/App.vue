@@ -28,7 +28,8 @@ export default {
     },
     data() {
         return {
-            todos: [],
+            todoId: 0,
+            todos: [{ id: 1, text: "dummy text", isCompleted: false }],
             filterText: "",
         };
     },
@@ -38,22 +39,28 @@ export default {
                 return this.todos;
             } else {
                 return this.todos.filter((todo) =>
-                    todo.toLowerCase().includes(this.filterText.toLowerCase())
+                    todo.text
+                        .toLowerCase()
+                        .includes(this.filterText.toLowerCase())
                 );
             }
         },
     },
     methods: {
-        addTodo(todoItem) {
-            this.todos.push(todoItem);
+        addTodo(todoText) {
+            const todo = {
+                id: this.todoId++,
+                text: todoText,
+                isCompleted: false,
+            };
+            this.todos.unshift(todo);
             this.filterText = "";
         },
-        removeTodo(todoItem) {
-            this.todos = this.todos.filter((todo) => todo !== todoItem);
+        removeTodo(todoId) {
+            this.todos = this.todos.filter((todo) => todo.id !== todoId);
         },
         filterTodo(filterItem) {
             this.filterText = filterItem;
-            console.log(!this.filterText)
         },
     },
 };
