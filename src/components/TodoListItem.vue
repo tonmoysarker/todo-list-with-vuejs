@@ -1,7 +1,7 @@
 <template>
     <li>
-        <p>{{ todo }}</p>
-        <span @click="removeTodo(todo)">&times;</span>
+        <p>{{ receivedTodo }}</p>
+        <span @click="removeTodo(receivedTodo)">&times;</span>
     </li>
 </template>
 
@@ -13,11 +13,6 @@ export default {
             type: String,
             required: true,
         },
-    },
-    data() {
-        return {
-            todo: this.receivedTodo,
-        };
     },
 };
 </script>

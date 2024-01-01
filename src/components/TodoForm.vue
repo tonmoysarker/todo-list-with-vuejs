@@ -1,25 +1,23 @@
 <template>
-    <form class="todo-form">
+    <div class="todo-form">
         <input
             type="text"
             id="todo-input"
-            v-model="todoItem"
+            v-model.trim="todoItem"
             placeholder="type your task here"
+            @input="handleFilterItem"
         />
         <div class="button-container">
             <button class="btn" type="button" @click="handleAddItem">
                 Add Item
             </button>
-            <button class="btn" type="button" @click="handleFilterItem">
-                Filter Item
-            </button>
         </div>
-    </form>
+    </div>
 </template>
 
 <script>
 export default {
-    emits: ["add-todo"],
+    emits: ["add-todo", "filter-todo"],
     data() {
         return {
             todoItem: "",
@@ -34,6 +32,9 @@ export default {
         },
         handleFilterItem() {
             // Handle filter logic here
+            if (this.todoItem !== "") {
+                this.$emit("filter-todo", this.todoItem);
+            }
         },
     },
 };

@@ -1,9 +1,12 @@
 <template>
     <main>
         <the-header></the-header>
-        <todo-form @add-todo="addTodo"></todo-form>
+        <todo-form @add-todo="addTodo" @filter-todo="filterTodo"></todo-form>
         <hr />
-        <todo-list :todos="todos"></todo-list>
+        <h3 v-if="todos.length === 0" class="msg">
+            Add new items to the list!
+        </h3>
+        <todo-list :todos="todoList" v-else></todo-list>
     </main>
 </template>
 
@@ -25,16 +28,32 @@ export default {
     },
     data() {
         return {
-            todos: ["dummy task1", "dummy task2", "dummy task3"],
+            todos: [],
+            filterText: "",
         };
+    },
+    computed: {
+        todoList() {
+            if (!this.filterText) {
+                return this.todos;
+            } else {
+                return this.todos.filter((todo) =>
+                    todo.toLowerCase().includes(this.filterText.toLowerCase())
+                );
+            }
+        },
     },
     methods: {
         addTodo(todoItem) {
-            console.log(this.todos);
             this.todos.push(todoItem);
+            this.filterText = "";
         },
         removeTodo(todoItem) {
             this.todos = this.todos.filter((todo) => todo !== todoItem);
+        },
+        filterTodo(filterItem) {
+            this.filterText = filterItem;
+            console.log(!this.filterText)
         },
     },
 };
@@ -60,9 +79,15 @@ body {
 main {
     width: 60%;
     height: 30rem;
-    margin: auto;
+    margin: 2rem auto;
     padding: 1rem;
     border-radius: 5px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.msg {
+    text-align: center;
+    padding: 0.4rem;
+    color: var(--primary-color);
 }
 </style>
