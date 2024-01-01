@@ -1,12 +1,13 @@
 <template>
     <li>
         <p>{{ todo }}</p>
-        <span>&times;</span>
+        <span @click="removeTodo(todo)">&times;</span>
     </li>
 </template>
 
 <script>
 export default {
+    inject: ["removeTodo"],
     props: {
         receivedTodo: {
             type: String,
@@ -41,6 +42,13 @@ li p {
 }
 li span {
     display: inline-block;
+    font-size: 1.8rem;
+    cursor: pointer;
+}
+
+li span:hover {
     font-size: 2rem;
+    font-weight: bold;
+    color: red;
 }
 </style>

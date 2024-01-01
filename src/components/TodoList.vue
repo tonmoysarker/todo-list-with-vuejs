@@ -29,13 +29,8 @@ export default {
 </script>
 
 <style scoped>
-section{
+section ul {
     height: 17rem;
-    overflow: hidden;
-    overflow-y: auto;
-} 
-
-section ul{
     list-style-type: none;
     padding: 0.5rem;
     display: flex;
@@ -43,5 +38,7 @@ section ul{
     gap: 0.7rem;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+    overflow-y: auto;
 }
 </style>

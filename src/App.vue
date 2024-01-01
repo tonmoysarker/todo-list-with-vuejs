@@ -2,7 +2,7 @@
     <main>
         <the-header></the-header>
         <todo-form @add-todo="addTodo"></todo-form>
-        <hr>
+        <hr />
         <todo-list :todos="todos"></todo-list>
     </main>
 </template>
@@ -18,6 +18,11 @@ export default {
         TodoForm,
         TodoList,
     },
+    provide() {
+        return {
+            removeTodo: this.removeTodo,
+        };
+    },
     data() {
         return {
             todos: ["dummy task1", "dummy task2", "dummy task3"],
@@ -28,6 +33,9 @@ export default {
             console.log(this.todos);
             this.todos.push(todoItem);
         },
+        removeTodo(todoItem) {
+            this.todos = this.todos.filter((todo) => todo !== todoItem);
+        },
     },
 };
 </script>
@@ -35,7 +43,6 @@ export default {
 <style>
 :root {
     --primary-color: hsl(267, 75%, 31%);
-
 }
 * {
     box-sizing: border-box;
