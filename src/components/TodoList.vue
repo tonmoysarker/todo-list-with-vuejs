@@ -1,6 +1,6 @@
 <template>
     <section>
-        <ul v-auto-animate>
+        <ul>
             <todo-list-item
                 v-for="todo in todos"
                 :key="todo"
