@@ -2,6 +2,7 @@
     <main>
         <the-header></the-header>
         <todo-form @add-todo="addTodo"></todo-form>
+        <hr>
         <todo-list :todos="todos"></todo-list>
     </main>
 </template>
@@ -34,6 +35,7 @@ export default {
 <style>
 :root {
     --primary-color: hsl(267, 75%, 31%);
+
 }
 * {
     box-sizing: border-box;
@@ -49,7 +51,7 @@ body {
     height: 100vh;
 }
 main {
-    width: 70%;
+    width: 60%;
     height: 30rem;
     margin: auto;
     padding: 1rem;
