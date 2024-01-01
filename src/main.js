@@ -1,4 +1,6 @@
-import { createApp } from 'vue'
-import App from './App.vue'
+import { autoAnimatePlugin } from "@formkit/auto-animate/vue";
 
-createApp(App).mount('#app')
+import { createApp } from "vue";
+import App from "./App.vue";
+
+createApp(App).use(autoAnimatePlugin).mount("#app");
